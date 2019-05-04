@@ -1,6 +1,6 @@
 /*
- * Developed by Luuuuuis on 23.04.19 17:22.
- * Last modified 23.04.19 17:04.
+ * Developed by Luuuuuis on 04.05.19 18:22.
+ * Last modified 04.05.19 18:15.
  * Copyright (c) 2019.
  */
 
@@ -27,12 +27,13 @@ public class MySQL {
         HashMap<String, Object> getMySQLCredentials = betaKey.getServerConfig().getMySQLCredentials();
 
         String url = "jdbc:mysql://" + getMySQLCredentials.get("Host").toString() + ":" + getMySQLCredentials.get("Port").toString() + "/"
-                + getMySQLCredentials.get("database").toString() + "?autoReconnect=true&useUnicode=yes";
+                + getMySQLCredentials.get("database").toString() + "?autoReconnect=true&useUnicode=yes&amp;allowMultiQueries=true";
         try {
 
             Connection connection = DriverManager.getConnection(url, getMySQLCredentials.get("User").toString(), getMySQLCredentials.get("Password").toString());
 
             if (connection != null) {
+                connection.setAutoCommit(true);
                 DatabaseMetaData metaData = connection.getMetaData();
                 System.out.println("BetaKey mysql >> Connected to " + metaData.getDatabaseProductName());
 

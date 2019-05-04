@@ -1,6 +1,6 @@
 /*
- * Developed by Luuuuuis on 23.04.19 17:22.
- * Last modified 23.04.19 17:15.
+ * Developed by Luuuuuis on 04.05.19 18:22.
+ * Last modified 04.05.19 18:20.
  * Copyright (c) 2019.
  */
 
@@ -37,10 +37,16 @@ public class DBManager {
 
         // Create Tables
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS betakey(BETAKEY VARCHAR(22), CREATOR VARCHAR(16), PERMANENT BOOLEAN, USES INT); " +
-                    "CREATE TABLE IF NOT EXISTS betaplayer(UUID VARCHAR(36), BETAKEY VARCHAR(22)); " +
-                    "CREATE UNIQUE INDEX IF NOT EXISTS uuid_bk ON betaplayer (UUID);"); // Set unique index
-            System.out.println("BetaKey SQL >> Successfully created all tables");
+
+            String batch1 = "CREATE TABLE IF NOT EXISTS betakey(BETAKEY VARCHAR(22), CREATOR VARCHAR(16), PERMANENT BOOLEAN, USES INT)";
+            statement.addBatch(batch1);
+            String batch2 = "CREATE TABLE IF NOT EXISTS betaplayer(UUID VARCHAR(36), BETAKEY VARCHAR(22))";
+            statement.addBatch(batch2);
+            String batch3 = "CREATE UNIQUE INDEX IF NOT EXISTS uuid_bk ON betaplayer (UUID)"; // Set unique index
+            statement.addBatch(batch3);
+
+            statement.executeBatch();
+            System.out.println("BetaKey SQL >> Successfully created all tables!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
