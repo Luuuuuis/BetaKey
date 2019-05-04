@@ -1,6 +1,6 @@
 /*
- * Developed by Luuuuuis on 23.04.19 20:53.
- * Last modified 23.04.19 20:53.
+ * Developed by Luuuuuis on 04.05.19 18:00.
+ * Last modified 04.05.19 17:34.
  * Copyright (c) 2019.
  */
 
@@ -25,7 +25,7 @@ public class BetaKeyCommand extends Command {
     private BetaKey betaKey;
 
     public BetaKeyCommand(BetaKey betaKey) {
-        super("BetaKey", "betakey.command", "bk");
+        super("BetaKey", "betakey.command", "bk", "beta");
         this.betaKey = betaKey;
     }
 

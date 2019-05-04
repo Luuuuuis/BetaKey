@@ -1,6 +1,6 @@
 /*
- * Developed by Luuuuuis on 23.04.19 17:22.
- * Last modified 23.04.19 17:05.
+ * Developed by Luuuuuis on 04.05.19 18:00.
+ * Last modified 04.05.19 17:34.
  * Copyright (c) 2019.
  */
 
@@ -62,7 +62,6 @@ public class BetaKey extends Plugin {
     @Override
     public void onDisable() {
         super.onDisable();
-
         dbManager.close();
     }
 

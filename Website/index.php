@@ -228,7 +228,7 @@
                 <i class='fas fa-lock'></i><br>BetaKey
               </h1>
               <h5>
-                Reedem your BetaKey for luis.team here!
+                Redeem your BetaKey for luis.team here!
               </h5>
               <br>
 

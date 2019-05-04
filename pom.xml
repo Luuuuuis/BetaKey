@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Developed by Luuuuuis on 23.04.19 17:22.
-  ~ Last modified 23.04.19 16:49.
+  ~ Developed by Luuuuuis on 04.05.19 18:00.
+  ~ Last modified 04.05.19 17:58.
   ~ Copyright (c) 2019.
   -->
 
@@ -12,7 +12,7 @@
 
     <groupId>BetaKey</groupId>
     <artifactId>de.luuuuuis.betakey</artifactId>
-    <version>2.0</version>
+    <version>2.0.04.052019</version>
 
 
     <repositories>
