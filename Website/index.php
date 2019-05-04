@@ -143,7 +143,7 @@
               $name = $_GET['name'];
               $key = $_GET['key'];
 
-              $db = new PDO('mysql:host=localhost;dbname=main', 'server', 'adksjhb79tz238hjudgs723hdas');
+              $db = new PDO('mysql:host=localhost;dbname=DATABASE', 'USERNAME', 'PASSWORD');
 
               $getKey = $db->prepare("SELECT * FROM betakey WHERE BETAKEY=?");
               if($getKey->execute(array($key))) {
