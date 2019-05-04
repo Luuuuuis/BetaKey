@@ -9,9 +9,14 @@ Commands:
   
 Permissions: - BetaKey.command
 
-
 Website:
-Copy WebSite in your http directory and change your mysql
+Copy the Website in your http directory and change:
+ - `$(window).ready(function () {
+            <!-- Here must be your path to the Site -->
+            history.pushState({}, '/YOUR PATH', window.location.pathname);
+          });`
+ - `$db = new PDO('mysql:host=localhost;dbname=DATABASE', 'USERNAME', 'PASSWORD');`
+          
 
 Discord for Support: https://discord.gg/2aSSGcz
 GitHub repo / Issues: https://github.com/Luuuuuis/BetaKey
