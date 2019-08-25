@@ -1,5 +1,5 @@
 # BetaKey
-**Goes into the next round!**
+**BungeeCord - Goes into the next round!**
 
 Commands:
 - "/BetaKey kadd <true/flase>" creates a random key. By clicking on the Key you copy it. Choose true for a permanent key.
