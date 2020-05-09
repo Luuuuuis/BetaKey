@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 20:35.
+ *  Developed by Luuuuuis on 09.05.20, 20:38.
+ *  Last modified 09.05.20, 20:37.
  *  Copyright (c) 2020.
  */
 
@@ -26,7 +26,6 @@ public class BetaKey {
          * config
          */
         Config.init(dataFolder);
-
 
         /*
          * database Manager
