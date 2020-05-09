@@ -21,10 +21,5 @@ Copy the Website in your http directory and change:
 Discord for Support: https://discord.gg/2aSSGcz
 GitHub repo / Issues: https://github.com/Luuuuuis/BetaKey
 
-Test-Server:
- - Minecraft Server: mc.luis.team
- - Website: https://luis.team/BetaKeyV2
- - BetaKey to redeem: CkxSL3Dp9N2c9KGJPClXld
-
 Questions? Please ask.
 Have Fun! ;)
