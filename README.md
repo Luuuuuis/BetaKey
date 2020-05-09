@@ -10,6 +10,8 @@ Commands:
 Permissions: - BetaKey.command
 
 Website:
+[Download here](https://github.com/Luuuuuis/BetaKey/releases/download/2.0.09.052020/Website.zip)
+
 Copy the Website in your http directory and change:
  - `$(window).ready(function () {
             <!-- Here must be your path to the Site -->
@@ -19,6 +21,7 @@ Copy the Website in your http directory and change:
           
 
 Discord for Support: https://discord.gg/2aSSGcz
+
 GitHub repo / Issues: https://github.com/Luuuuuis/BetaKey
 
 Questions? Please ask.
