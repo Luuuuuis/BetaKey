@@ -1,6 +1,6 @@
 name: BetaKey
-version: 2.0.04.052019
-main: de.luuuuuis.betakey.BetaKey
+version: 2.0.09.052020
+main: de.luuuuuis.betakey.bungee.init
 author: Luuuuuis
 website: https://github.com/Luuuuuis/BetaKey
 prefix: BetaKey

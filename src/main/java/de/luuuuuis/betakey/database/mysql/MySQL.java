@@ -1,12 +1,13 @@
 /*
- * Developed by Luuuuuis on 04.05.19 18:22.
- * Last modified 04.05.19 18:15.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 20:24.
+ *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.database.mysql;
 
 import de.luuuuuis.betakey.BetaKey;
+import de.luuuuuis.betakey.misc.Config;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -16,7 +17,7 @@ import java.util.HashMap;
 
 public class MySQL {
 
-    private BetaKey betaKey;
+    private final BetaKey betaKey;
 
     public MySQL(BetaKey betaKey) {
         this.betaKey = betaKey;
@@ -24,9 +25,9 @@ public class MySQL {
 
     public void init() {
 
-        HashMap<String, Object> getMySQLCredentials = betaKey.getServerConfig().getMySQLCredentials();
+        HashMap<String, Object> getMySQLCredentials = Config.getInstance().getMySQLCredentials();
 
-        String url = "jdbc:mysql://" + getMySQLCredentials.get("Host").toString() + ":" + getMySQLCredentials.get("Port").toString() + "/"
+        String url = "jdbc:mysql://" + getMySQLCredentials.get("Host").toString() + ":" + ((Double) getMySQLCredentials.get("Port")).intValue() + "/"
                 + getMySQLCredentials.get("database").toString() + "?autoReconnect=true&useUnicode=yes&amp;allowMultiQueries=true";
         try {
 

@@ -1,13 +1,13 @@
 /*
- * Developed by Luuuuuis on 23.04.19 18:25.
- * Last modified 23.04.19 18:20.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 19:53.
+ *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.database.querys;
 
 import de.luuuuuis.betakey.BetaKey;
-import de.luuuuuis.betakey.exceptions.NoActiveDBException;
+import de.luuuuuis.betakey.database.DBManager;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,8 +15,9 @@ import java.util.UUID;
 
 public class BetaPlayer {
 
-    private String uuid;
-    private BetaPlayerInfo betaPlayerInfo;
+    private final DBManager dbManager = BetaKey.instance.getDbManager();
+    private final String uuid;
+    private final BetaPlayerInfo betaPlayerInfo;
     private boolean valid;
 
     public BetaPlayer(UUID uuid) {
@@ -26,13 +27,13 @@ public class BetaPlayer {
 
 
     public void create(String betakey) {
-        if (!BetaKey.getInstance().getDbManager().isConnected()) throw new NoActiveDBException("Not connected to any DB");
+        if (!dbManager.isConnected()) System.err.println("Not connected to any DB");
         if (betaPlayerInfo != null) {
             System.err.println("BetaKey >> Player already exists");
             return;
         }
 
-        try (PreparedStatement preparedStatement = BetaKey.getInstance().getDbManager().getConnection().prepareStatement("INSERT INTO betaplayer(UUID, BETAKEY) VALUES (?, ?)")) {
+        try (PreparedStatement preparedStatement = dbManager.getConnection().prepareStatement("INSERT INTO betaplayer(UUID, BETAKEY) VALUES (?, ?)")) {
 
             preparedStatement.setString(1, uuid);
             preparedStatement.setString(2, betakey);
@@ -47,13 +48,13 @@ public class BetaPlayer {
     }
 
     public void remove() {
-        if (!BetaKey.getInstance().getDbManager().isConnected()) throw new NoActiveDBException("BetaKey >> Not connected to any DB");
+        if (!dbManager.isConnected()) System.err.println("Not connected to any DB");
         if (betaPlayerInfo == null) {
             System.err.println("BetaKey >> Player does not exists");
             return;
         }
 
-        try (PreparedStatement preparedStatement = BetaKey.getInstance().getDbManager().getConnection().prepareStatement("DELETE FROM betaplayer WHERE UUID=?")) {
+        try (PreparedStatement preparedStatement = dbManager.getConnection().prepareStatement("DELETE FROM betaplayer WHERE UUID=?")) {
 
             preparedStatement.setString(1, uuid);
 
@@ -71,7 +72,7 @@ public class BetaPlayer {
     }
 
     public boolean isValid() {
-        if(this.betaPlayerInfo != null) {
+        if (this.betaPlayerInfo != null) {
             this.valid = true;
         }
         return valid;

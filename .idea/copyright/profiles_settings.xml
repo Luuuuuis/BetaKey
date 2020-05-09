@@ -1,0 +1,10 @@
+<component name="CopyrightManager">
+  <settings default="default">
+    <module2copyright>
+      <element module="All" copyright="default" />
+    </module2copyright>
+    <LanguageOptions name="HTML">
+      <option name="prefixLines" value="false" />
+    </LanguageOptions>
+  </settings>
+</component>

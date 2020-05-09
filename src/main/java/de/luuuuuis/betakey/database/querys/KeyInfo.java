@@ -1,7 +1,7 @@
 /*
- * Developed by Luuuuuis on 23.04.19 18:25.
- * Last modified 23.04.19 18:23.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 20:35.
+ *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.database.querys;
@@ -13,9 +13,9 @@ import java.sql.SQLException;
 
 public class KeyInfo {
 
-    private String creator;
-    private boolean permanent;
-    private int uses;
+    private final String creator;
+    private final boolean permanent;
+    private final int uses;
 
     private KeyInfo(ResultSet rs) throws SQLException {
         this.creator = rs.getString("CREATOR");
@@ -25,7 +25,7 @@ public class KeyInfo {
 
     static KeyInfo getKeyInfo(String BETAKEY) {
 
-        try (ResultSet rs = BetaKey.getInstance().getDbManager().getResult("SELECT * FROM betakey WHERE BETAKEY='" + BETAKEY + "'")) {
+        try (ResultSet rs = BetaKey.instance.getDbManager().getResult("SELECT * FROM betakey WHERE BETAKEY='" + BETAKEY + "'")) {
             if (rs.next()) {
                 return new KeyInfo(rs);
             }
@@ -45,5 +45,14 @@ public class KeyInfo {
 
     public int getUses() {
         return uses;
+    }
+
+    @Override
+    public String toString() {
+        return "KeyInfo{" +
+                "creator='" + creator + '\'' +
+                ", permanent=" + permanent +
+                ", uses=" + uses +
+                '}';
     }
 }

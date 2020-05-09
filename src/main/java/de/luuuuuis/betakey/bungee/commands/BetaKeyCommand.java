@@ -1,16 +1,18 @@
 /*
- * Developed by Luuuuuis on 04.05.19 18:00.
- * Last modified 04.05.19 17:34.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 19:31.
+ *  Copyright (c) 2020.
  */
 
-package de.luuuuuis.betakey.commands;
+package de.luuuuuis.betakey.bungee.commands;
 
-import de.luuuuuis.betakey.BetaKey;
 import de.luuuuuis.betakey.database.querys.BetaPlayer;
 import de.luuuuuis.betakey.database.querys.Key;
+import de.luuuuuis.betakey.misc.Config;
 import de.luuuuuis.betakey.misc.MojangUUIDResolve;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -22,21 +24,18 @@ import java.util.UUID;
 
 public class BetaKeyCommand extends Command {
 
-    private BetaKey betaKey;
-
-    public BetaKeyCommand(BetaKey betaKey) {
+    public BetaKeyCommand() {
         super("BetaKey", "betakey.command", "bk", "beta");
-        this.betaKey = betaKey;
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public void execute(CommandSender sender, String[] strings) {
         if (strings.length != 2) {
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "/betakey padd [PLAYER]");
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "/betakey premove [PLAYER]");
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "/betakey kadd <true/false>");
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "/betakey kremove [KEY]");
+            sender.sendMessage(Config.getInstance().getPrefix() + "/betakey padd [PLAYER]");
+            sender.sendMessage(Config.getInstance().getPrefix() + "/betakey premove [PLAYER]");
+            sender.sendMessage(Config.getInstance().getPrefix() + "/betakey kadd <true/false>");
+            sender.sendMessage(Config.getInstance().getPrefix() + "/betakey kremove [KEY]");
             return;
         }
 
@@ -44,30 +43,35 @@ public class BetaKeyCommand extends Command {
             BetaPlayer betaPlayer = new BetaPlayer(UUID.fromString(MojangUUIDResolve.getUUIDResult(strings[1]).getValue()));
             betaPlayer.create(null);
 
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "§aPlayer successfully added!");
+            sender.sendMessage(Config.getInstance().getPrefix() + "§aPlayer successfully added!");
         } else if (strings[0].equalsIgnoreCase("premove")) {
             BetaPlayer betaPlayer = new BetaPlayer(UUID.fromString(MojangUUIDResolve.getUUIDResult(strings[1]).getValue()));
             betaPlayer.remove();
 
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "§cPlayer successfully removed!");
+            // kick player if online
+            ProxiedPlayer player = ProxyServer.getInstance().getPlayer(strings[1]);
+            if (player != null)
+                player.disconnect(ChatColor.translateAlternateColorCodes('&', Config.getInstance().getKickMessage()));
+
+            sender.sendMessage(Config.getInstance().getPrefix() + "§cPlayer successfully removed!");
         } else if (strings[0].equalsIgnoreCase("kadd")) {
             String rndKey = Key.createRandomKey();
             Key key = new Key(rndKey);
             key.create(((sender instanceof ProxiedPlayer) ? sender.getName() : "Console"), strings[1].equals("true"));
 
-            TextComponent msg = new TextComponent(betaKey.getServerConfig().getPrefix() + "§aKey successfully added!\n§8> §6§l" + rndKey + " §7[Copy]");
+            TextComponent msg = new TextComponent(Config.getInstance().getPrefix() + "§aKey successfully added!\n§8> §6§l" + rndKey + " §7[Copy]");
             msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§7Click to copy the key!").create()));
             msg.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, rndKey));
 
             sender.sendMessage(msg);
-        } else if(strings[0].equalsIgnoreCase("kremove")) {
+        } else if (strings[0].equalsIgnoreCase("kremove")) {
             String rndKey = strings[1];
             Key key = new Key(rndKey);
             key.remove();
 
-            if(!key.isValid()) return;
+            if (!key.isValid()) return;
 
-            sender.sendMessage(betaKey.getServerConfig().getPrefix() + "§cKey of §6§l" + key.getKeyInfo().getCreator() + " §cwith §6§l" + key.getKeyInfo().getUses() + " Uses §csuccessfully removed!");
+            sender.sendMessage(Config.getInstance().getPrefix() + "§cKey of §6§l" + key.getKeyInfo().getCreator() + " §cwith §6§l" + key.getKeyInfo().getUses() + " Uses §csuccessfully removed!");
         }
 
 

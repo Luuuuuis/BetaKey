@@ -1,14 +1,13 @@
 /*
- * Developed by Luuuuuis on 04.05.19 18:22.
- * Last modified 04.05.19 18:20.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 19:50.
+ *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.database;
 
 import de.luuuuuis.betakey.BetaKey;
 import de.luuuuuis.betakey.database.mysql.MySQL;
-import de.luuuuuis.betakey.exceptions.NoActiveDBException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ import java.sql.Statement;
 
 public class DBManager {
 
-    private BetaKey betaKey;
+    private final BetaKey betaKey;
     private Connection connection;
 
     public DBManager(BetaKey betaKey) {
@@ -27,13 +26,8 @@ public class DBManager {
     public void connect() {
         if (isConnected()) return;
 
-        if (betaKey.getServerConfig().getMySQLCredentials().get("active").equals(true)) {
-
-            new MySQL(betaKey).init();
-
-        } else {
-            throw new NoActiveDBException("No active DB was found");
-        }
+        //init connection to mysql
+        new MySQL(betaKey).init();
 
         // Create Tables
         try (Statement statement = connection.createStatement()) {

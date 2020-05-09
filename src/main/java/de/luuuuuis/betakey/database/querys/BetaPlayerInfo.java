@@ -1,7 +1,7 @@
 /*
- * Developed by Luuuuuis on 23.04.19 18:25.
- * Last modified 23.04.19 18:08.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 19:30.
+ *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.database.querys;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class BetaPlayerInfo {
 
-    private String betaKey;
+    private final String betaKey;
 
     private BetaPlayerInfo(ResultSet rs) throws SQLException {
         betaKey = rs.getString("BETAKEY");
@@ -21,7 +21,7 @@ public class BetaPlayerInfo {
 
     public static BetaPlayerInfo getPlayerInfo(String uuid) {
 
-        try (ResultSet rs = BetaKey.getInstance().getDbManager().getResult("SELECT * FROM betaplayer WHERE UUID='" + uuid + "'")) {
+        try (ResultSet rs = BetaKey.instance.getDbManager().getResult("SELECT * FROM betaplayer WHERE UUID='" + uuid + "'")) {
             if (rs.next()) {
                 return new BetaPlayerInfo(rs);
             }

@@ -1,7 +1,7 @@
 /*
- * Developed by Luuuuuis on 23.04.19 22:40.
- * Last modified 23.04.19 22:40.
- * Copyright (c) 2019.
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 17:50.
+ *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.misc;

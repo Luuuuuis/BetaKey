@@ -1,4 +1,9 @@
 <?php
+/**
+ *  Developed by Luuuuuis on 09.05.20, 20:35.
+ *  Last modified 09.05.20, 18:39.
+ *  Copyright (c) 2020.
+ */
 
 /**
  * Get UUID from username
@@ -94,5 +99,3 @@ function format_uuid($uuid) {
     }
     return false;
 }
-
-?>
