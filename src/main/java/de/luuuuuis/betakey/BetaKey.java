@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:38.
- *  Last modified 09.05.20, 20:37.
+ *  Developed by Luuuuuis on 23.06.20, 14:09.
+ *  Last modified 23.06.20, 12:46.
  *  Copyright (c) 2020.
  */
 
@@ -18,10 +18,12 @@ public class BetaKey {
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     public static BetaKey instance = null;
     private final DBManager dbManager;
+    private final File dataFolder;
 
 
     public BetaKey(File dataFolder) {
         instance = this;
+        this.dataFolder = dataFolder;
         /*
          * config
          */
@@ -38,5 +40,9 @@ public class BetaKey {
 
     public DBManager getDbManager() {
         return dbManager;
+    }
+
+    public File getDataFolder() {
+        return dataFolder;
     }
 }

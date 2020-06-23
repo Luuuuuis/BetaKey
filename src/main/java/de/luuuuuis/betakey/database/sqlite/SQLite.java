@@ -4,18 +4,18 @@
  *  Copyright (c) 2020.
  */
 
-package de.luuuuuis.betakey.database.mysql;
+package de.luuuuuis.betakey.database.sqlite;
 
 import de.luuuuuis.betakey.BetaKey;
 import de.luuuuuis.betakey.misc.Config;
 
 import java.util.HashMap;
 
-public class MySQL {
+public class SQLite {
 
     private final BetaKey betaKey;
 
-    public MySQL(BetaKey betaKey) {
+    public SQLite(BetaKey betaKey) {
         this.betaKey = betaKey;
     }
 
@@ -23,8 +23,14 @@ public class MySQL {
 
         HashMap<String, Object> getMySQLCredentials = Config.getInstance().getMySQLCredentials();
 
-        String url = "jdbc:mysql://" + getMySQLCredentials.get("Host").toString() + ":" + ((Double) getMySQLCredentials.get("Port")).intValue() + "/"
-                + getMySQLCredentials.get("database").toString() + "?autoReconnect=true&useUnicode=yes&amp;allowMultiQueries=true";
+        String url = "jdbc:sqlite:" + betaKey.getDataFolder().getAbsolutePath() + "/betakey.sqlite";
+
+        try {
+            // use JDBC driver for SQLite
+            Class.forName("org.sqlite.JDBC");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         betaKey.getDbManager().connect(getMySQLCredentials, url);
     }

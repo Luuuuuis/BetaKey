@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 19:50.
+ *  Developed by Luuuuuis on 23.06.20, 14:09.
+ *  Last modified 23.06.20, 13:49.
  *  Copyright (c) 2020.
  */
 
@@ -8,11 +8,11 @@ package de.luuuuuis.betakey.database;
 
 import de.luuuuuis.betakey.BetaKey;
 import de.luuuuuis.betakey.database.mysql.MySQL;
+import de.luuuuuis.betakey.database.sqlite.SQLite;
+import de.luuuuuis.betakey.misc.Config;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.HashMap;
 
 public class DBManager {
 
@@ -26,8 +26,13 @@ public class DBManager {
     public void connect() {
         if (isConnected()) return;
 
-        //init connection to mysql
-        new MySQL(betaKey).init();
+        // choose between MySQL or SQLite
+        if ((boolean) Config.getInstance().getMySQLCredentials().get("use")) {
+            //init connection to mysql
+            new MySQL(betaKey).init();
+        } else {
+            new SQLite(betaKey).init();
+        }
 
         // Create Tables
         try (Statement statement = connection.createStatement()) {
@@ -46,6 +51,22 @@ public class DBManager {
         }
     }
 
+    public void connect(HashMap<String, Object> getMySQLCredentials, String url) {
+        try {
+            Connection connection = DriverManager.getConnection(url, getMySQLCredentials.get("User").toString(), getMySQLCredentials.get("Password").toString());
+
+            if (connection != null) {
+                connection.setAutoCommit(true);
+                DatabaseMetaData metaData = connection.getMetaData();
+                System.out.println("BetaKey SQK >> Connected to " + metaData.getDatabaseProductName());
+
+                setConnection(connection);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void close() {
         if (!isConnected()) return;

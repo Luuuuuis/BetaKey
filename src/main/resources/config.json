@@ -2,6 +2,7 @@
   "kickMessage": "&9Beta\n\n&7You have to redeem your key at &cthisServer.com/betakey&7.",
   "prefix": "&9BetaKey &8» &7",
   "mysql": {
+    "use": false,
     "database": "betakey",
     "User": "root",
     "Port": 3306,

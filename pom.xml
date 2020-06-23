@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~  Developed by Luuuuuis on 09.05.20, 20:35.
-  ~  Last modified 09.05.20, 20:30.
+  ~  Developed by Luuuuuis on 23.06.20, 14:09.
+  ~  Last modified 23.06.20, 13:58.
   ~  Copyright (c) 2020.
   -->
 
@@ -12,7 +12,7 @@
 
     <groupId>BetaKey</groupId>
     <artifactId>de.luuuuuis.betakey</artifactId>
-    <version>2.0.09.052020</version>
+    <version>2.1</version>
 
 
     <repositories>
@@ -123,6 +123,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.10</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc SQLite driver -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.28.0</version>
         </dependency>
 
     </dependencies>
