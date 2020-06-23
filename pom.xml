@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~  Developed by Luuuuuis on 23.06.20, 14:09.
-  ~  Last modified 23.06.20, 13:58.
+  ~  Developed by Luuuuuis on 23.04.21, 23:31.
+  ~  Last modified 23.04.21, 15:43.
   ~  Copyright (c) 2020.
   -->
 
@@ -24,7 +24,7 @@
         <repository>
             <id>jcenter</id>
             <name>jcenter-bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <url>https://jcenter.bintray.com</url>
         </repository>
 
         <!-- This adds the Spigot Maven repository to the build -->
@@ -41,8 +41,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -84,14 +84,14 @@
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.15-SNAPSHOT</version>
+            <version>1.16-R0.5-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>
-            <version>1.15-SNAPSHOT</version>
+            <version>1.16-R0.5-SNAPSHOT</version>
             <type>javadoc</type>
             <scope>provided</scope>
         </dependency>
@@ -132,6 +132,12 @@
             <version>3.28.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
     </dependencies>
 
 </project>

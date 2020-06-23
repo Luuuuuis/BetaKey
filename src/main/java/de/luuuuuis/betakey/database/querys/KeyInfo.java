@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 20:35.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 23:31.
  *  Copyright (c) 2020.
  */
 
@@ -33,6 +33,17 @@ public class KeyInfo {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public static int count() {
+        try (ResultSet rs = BetaKey.instance.getDbManager().getResult("SELECT COUNT(*) FROM betakey")) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
     }
 
     public String getCreator() {

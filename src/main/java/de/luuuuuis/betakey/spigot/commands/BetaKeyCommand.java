@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 19:32.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 15:54.
  *  Copyright (c) 2020.
  */
 
@@ -27,7 +27,6 @@ public class BetaKeyCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-
         if (strings.length != 2) {
             sender.sendMessage(Config.getInstance().getPrefix() + "/betakey padd [PLAYER]");
             sender.sendMessage(Config.getInstance().getPrefix() + "/betakey premove [PLAYER]");

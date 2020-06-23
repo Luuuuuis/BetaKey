@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 19:53.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 16:26.
  *  Copyright (c) 2020.
  */
 
@@ -64,7 +64,6 @@ public class BetaPlayer {
         }
 
         System.out.println("BetaKey >> Player removed");
-
     }
 
     public BetaPlayerInfo getBetaPlayerInfo() {

@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 23.06.20, 14:09.
- *  Last modified 23.06.20, 13:49.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 15:05.
  *  Copyright (c) 2020.
  */
 
@@ -58,7 +58,7 @@ public class DBManager {
             if (connection != null) {
                 connection.setAutoCommit(true);
                 DatabaseMetaData metaData = connection.getMetaData();
-                System.out.println("BetaKey SQK >> Connected to " + metaData.getDatabaseProductName());
+                System.out.println("BetaKey SQL >> Connected to " + metaData.getDatabaseProductName());
 
                 setConnection(connection);
             }

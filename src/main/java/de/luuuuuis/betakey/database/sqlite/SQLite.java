@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 23.06.20, 14:09.
- *  Last modified 23.06.20, 13:46.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 21:24.
  *  Copyright (c) 2020.
  */
 
@@ -23,7 +23,7 @@ public class SQLite {
 
         HashMap<String, Object> getMySQLCredentials = Config.getInstance().getMySQLCredentials();
 
-        String url = "jdbc:sqlite:" + betaKey.getDataFolder().getAbsolutePath() + "/betakey.sqlite";
+        String url = "jdbc:sqlite:" + betaKey.getIPlugin().getFolder() + "/betakey.sqlite";
 
         try {
             // use JDBC driver for SQLite

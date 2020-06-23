@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 17:50.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 23:31.
  *  Copyright (c) 2020.
  */
 
@@ -12,8 +12,6 @@ import com.google.common.cache.LoadingCache;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.TextComponent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,16 +19,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class MojangUUIDResolve {
 
     /*
-     *
      * MojangUUIDResolve made by @yanjulang
-     *
-     *
      */
 
     public static final LoadingCache<String, ProxyCacheResult> nameCache = CacheBuilder.newBuilder()
@@ -70,8 +66,8 @@ public class MojangUUIDResolve {
                 public ProxyCacheResult load(String name) {
                     BufferedReader reader = null;
                     try {
-                        URL url = new URL(new StringBuilder().append("https://api.mojang.com/users/profiles/minecraft/")
-                                .append(name).toString());
+                        URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" +
+                                name);
                         URLConnection conn = url.openConnection();
 
                         reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -81,7 +77,7 @@ public class MojangUUIDResolve {
                             content.append(line);
                         }
 
-                        System.out.println("Content " + content.toString());
+                        System.out.println("Content " + content);
 
                         MojangUUIDProfile p = gson.fromJson(content.toString(),
                                 MojangUUIDProfile.class);
@@ -104,8 +100,7 @@ public class MojangUUIDResolve {
                         }
 
                     } catch (IOException e) {
-                        ProxyServer.getInstance().getConsole()
-                                .sendMessage(new TextComponent("Can't retrieve UUID from mojang server!"));
+                        System.err.println("Can't retrieve UUID from mojang server!");
                     } finally {
                         if (reader != null)
                             try {
@@ -136,11 +131,11 @@ public class MojangUUIDResolve {
     }
 
     public String getUUID(String name) {
-        return getUUIDResult(name).getValue();
+        return Objects.requireNonNull(getUUIDResult(name)).getValue();
     }
 
     public String getName(String uuid) {
-        return getNameResult(uuid).getValue();
+        return Objects.requireNonNull(getNameResult(uuid)).getValue();
     }
 
     public enum InfoType {
@@ -191,7 +186,7 @@ public class MojangUUIDResolve {
         }
     }
 
-    public class MojangUUIDProfile {
+    public static class MojangUUIDProfile {
         String id;
         String name;
 

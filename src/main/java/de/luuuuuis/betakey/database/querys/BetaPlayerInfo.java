@@ -1,6 +1,6 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 19:30.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 23:31.
  *  Copyright (c) 2020.
  */
 
@@ -20,7 +20,6 @@ public class BetaPlayerInfo {
     }
 
     public static BetaPlayerInfo getPlayerInfo(String uuid) {
-
         try (ResultSet rs = BetaKey.instance.getDbManager().getResult("SELECT * FROM betaplayer WHERE UUID='" + uuid + "'")) {
             if (rs.next()) {
                 return new BetaPlayerInfo(rs);
@@ -31,6 +30,16 @@ public class BetaPlayerInfo {
         return null;
     }
 
+    public static int count() {
+        try (ResultSet rs = BetaKey.instance.getDbManager().getResult("SELECT COUNT(*) FROM betaplayer")) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
 
     public String getBetaKey() {
         return betaKey;

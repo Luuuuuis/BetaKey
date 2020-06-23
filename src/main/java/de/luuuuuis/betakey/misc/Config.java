@@ -1,17 +1,21 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 20:35.
+ *  Developed by Luuuuuis on 23.04.21, 23:31.
+ *  Last modified 23.04.21, 16:58.
  *  Copyright (c) 2020.
  */
 
 package de.luuuuuis.betakey.misc;
 
 import de.luuuuuis.betakey.BetaKey;
+import lombok.Cleanup;
+import lombok.SneakyThrows;
+import net.md_5.bungee.api.ChatColor;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -20,7 +24,6 @@ import java.util.Objects;
 public class Config {
 
     private static Config instance;
-
 
     private final HashMap<String, Object> mysql;
     private final String prefix;
@@ -36,41 +39,32 @@ public class Config {
         return instance;
     }
 
+    @SneakyThrows(IOException.class)
     public synchronized static void init(File dataFolder) {
-
         String path = dataFolder.getPath() + "/config.json";
         if (Files.notExists(Paths.get(path))) {
 
             // create DataFolder
             if (!dataFolder.exists())
+                //noinspection ResultOfMethodCallIgnored
                 dataFolder.mkdir();
 
             // copy config
-            try (InputStream in = BetaKey.class.getClassLoader().getResourceAsStream("config.json")) {
-                Files.copy(Objects.requireNonNull(in), Paths.get(path));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            // read config
-            try (FileReader fileReader = new FileReader(path)) {
-                instance = BetaKey.GSON.fromJson(fileReader, Config.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            try (FileReader fileReader = new FileReader(path)) {
-                instance = BetaKey.GSON.fromJson(fileReader, Config.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            @Cleanup InputStream inputStream = BetaKey.class.getClassLoader().getResourceAsStream("config.json");
+            Files.copy(Objects.requireNonNull(inputStream), Paths.get(path));
         }
 
+        read(path);
+    }
+
+    @SneakyThrows(IOException.class)
+    private static void read(String path) {
+        @Cleanup FileReader fileReader = new FileReader(path, StandardCharsets.UTF_8);
+        instance = BetaKey.GSON.fromJson(fileReader, Config.class);
     }
 
     public String getPrefix() {
-        return prefix;
+        return ChatColor.translateAlternateColorCodes('&', prefix);
     }
 
     public String getKickMessage() {
