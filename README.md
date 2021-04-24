@@ -1,5 +1,5 @@
 # BetaKey
-**BungeeCord - Goes into the next round!**
+**BungeeCord and Spigot plugin to manage your closed Beta**
 
 Commands:
 - "/BetaKey kadd <true/flase>" creates a random key. By clicking on the Key you copy it. Choose true for a permanent key.
@@ -10,7 +10,6 @@ Commands:
 Permissions: - BetaKey.command
 
 Website:
-[Download here](https://github.com/Luuuuuis/BetaKey/releases/download/2.0.09.052020/Website.zip)
 
 Copy the Website in your http directory and change:
  - `$(window).ready(function () {
