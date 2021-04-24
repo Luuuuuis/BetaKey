@@ -1,7 +1,7 @@
 /*
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 19:31.
- *  Copyright (c) 2020.
+ *  Developed by Luuuuuis.
+ *  Last modified 09.05.20, 20:35.
+ *  Copyright (c) 2021.
  */
 
 package de.luuuuuis.betakey.bungee.commands;

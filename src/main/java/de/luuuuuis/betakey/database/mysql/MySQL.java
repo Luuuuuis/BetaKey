@@ -1,7 +1,7 @@
 /*
- *  Developed by Luuuuuis on 23.06.20, 14:09.
- *  Last modified 23.06.20, 13:46.
- *  Copyright (c) 2020.
+ *  Developed by Luuuuuis.
+ *  Last modified 23.06.20, 14:09.
+ *  Copyright (c) 2021.
  */
 
 package de.luuuuuis.betakey.database.mysql;
@@ -24,7 +24,7 @@ public class MySQL {
         HashMap<String, Object> getMySQLCredentials = Config.getInstance().getMySQLCredentials();
 
         String url = "jdbc:mysql://" + getMySQLCredentials.get("Host").toString() + ":" + ((Double) getMySQLCredentials.get("Port")).intValue() + "/"
-                + getMySQLCredentials.get("database").toString() + "?autoReconnect=true&useUnicode=yes&amp;allowMultiQueries=true";
+                + getMySQLCredentials.get("database").toString() + "?autoReconnect=true&useUnicode=yes&allowMultiQueries=true";
 
         betaKey.getDbManager().connect(getMySQLCredentials, url);
     }

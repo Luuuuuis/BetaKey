@@ -1,8 +1,8 @@
 <?php
-/**
- *  Developed by Luuuuuis on 09.05.20, 20:35.
- *  Last modified 09.05.20, 18:39.
- *  Copyright (c) 2020.
+/*
+ *  Developed by Luuuuuis.
+ *  Last modified 24.04.21, 12:53.
+ *  Copyright (c) 2021.
  */
 
 /**
